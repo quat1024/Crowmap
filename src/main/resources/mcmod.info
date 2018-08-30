@@ -1,0 +1,16 @@
+[
+{
+  "modid": "crowmap",
+  "name": "Crowmap",
+  "description": "Updates maps anywhere in your inventory.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["quaternary"],
+  "credits": "/u/Crowfooted for the idea ;)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
