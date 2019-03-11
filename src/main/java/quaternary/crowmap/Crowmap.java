@@ -2,9 +2,9 @@ package quaternary.crowmap;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.MapData;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -30,12 +30,17 @@ public class Crowmap {
 			if(i == player.inventory.currentItem) continue; //Already holding this map. No need to update it again
 			
 			ItemStack stack = player.inventory.getStackInSlot(i);
-			if(stack.getItem() == Items.FILLED_MAP) {
+			if(isMap(stack)) {
 				//Force the map data to update.
-				MapData mapData = Items.FILLED_MAP.getMapData(stack, world);
-				Items.FILLED_MAP.updateMapData(world, player, mapData);
+				ItemMap map = (ItemMap) stack.getItem();
+				map.updateMapData(world, player, map.getMapData(stack, world));
 			}
 		}
+	}
+	
+	public static boolean isMap(ItemStack stack) {
+		if(CrowmapConfig.onlyVanillaMaps) return stack.getItem() == Items.FILLED_MAP;
+		else return stack.getItem() instanceof ItemMap;
 	}
 	
 	@Config(modid = MODID)
@@ -43,6 +48,10 @@ public class Crowmap {
 	public static class CrowmapConfig {
 		@Config.Name("Display a tooltip on the map item")
 		public static boolean tooltip = true;
+		
+		@Config.Name("Only vanilla maps")
+		@Config.Comment("Enable this if you get crashes or something with weird modded maps")
+		public static boolean onlyVanillaMaps = false;
 		
 		@SubscribeEvent
 		public static void configChanged(ConfigChangedEvent.OnConfigChangedEvent e) {

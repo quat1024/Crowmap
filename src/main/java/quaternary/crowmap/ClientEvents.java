@@ -1,10 +1,8 @@
 package quaternary.crowmap;
 
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemMap;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,14 +12,14 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientEvents {
 	@SubscribeEvent
 	public static void tooltip(ItemTooltipEvent e) {
-		if(!Crowmap.CrowmapConfig.tooltip) return;
+		if(!Crowmap.CrowmapConfig.tooltip || e.getEntityPlayer() == null) return;
 		
-		if(e.getItemStack().getItem() == Items.FILLED_MAP) {
+		if(Crowmap.isMap(e.getItemStack())) {
 			if(GuiScreen.isShiftKeyDown()) {
-				e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.translateToLocal("crowmap.tooltip.show.1"));
-				e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.translateToLocal("crowmap.tooltip.show.2"));
+				e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.format("crowmap.tooltip.show.1"));
+				e.getToolTip().add(TextFormatting.DARK_AQUA + I18n.format("crowmap.tooltip.show.2"));
 			} else {
-				e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.translateToLocal("crowmap.tooltip.hide"));
+				e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("crowmap.tooltip.hide"));
 			}
 		}
 	}
