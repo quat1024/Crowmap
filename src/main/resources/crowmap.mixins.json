@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "quaternary.crowmap.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "FilledMapItemMixin"
+  ],
+  "client": [
+		"client.FilledMapItemTooltipMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

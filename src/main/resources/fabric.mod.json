@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "crowmap",
+  "version": "${version}",
+
+  "name": "Crowmap",
+  "description": "Maps update anywhere in your inventory, not just in either hand!",
+  "authors": [ "quaternary" ],
+  "contact": {
+    "homepage": "TODO",
+    "sources": "TODO"
+  },
+
+  "license": "MPL-2.0",
+  "icon": "assets/crowmap/icon.png",
+  
+  "mixins": [
+    "crowmap.mixins.json"
+  ]
+}

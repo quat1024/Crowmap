@@ -1,0 +1,5 @@
+{
+	"crowmap.tooltip.hide": "<Shift>",
+	"crowmap.tooltip.hello": "Crowmap is present",
+	"crowmap.tooltip.info": "Map updates without being held"
+}
