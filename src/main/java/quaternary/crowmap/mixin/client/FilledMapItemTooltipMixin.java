@@ -1,6 +1,5 @@
 package quaternary.crowmap.mixin.client;
 
-import com.sun.istack.internal.Nullable;
 import net.minecraft.client.gui.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.FilledMapItem;
@@ -22,7 +21,7 @@ public class FilledMapItemTooltipMixin {
 		method = "buildTooltip(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Ljava/util/List;Lnet/minecraft/client/item/TooltipContext;)V",
 		at = @At("TAIL")
 	)
-	public void buildTooltipAfter(ItemStack stack, @Nullable World world, List<TextComponent> tooltip, TooltipContext bigMistake, CallbackInfo ci) {
+	public void buildTooltipAfter(ItemStack stack, World world, List<TextComponent> tooltip, TooltipContext bigMistake, CallbackInfo ci) {
 		if(Screen.hasShiftDown()) {
 			tooltip.add(new TranslatableTextComponent("crowmap.tooltip.hello").applyFormat(TextFormat.DARK_AQUA));
 			tooltip.add(new TranslatableTextComponent("crowmap.tooltip.info").applyFormat(TextFormat.DARK_AQUA));
