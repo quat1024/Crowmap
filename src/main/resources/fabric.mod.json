@@ -7,8 +7,9 @@
   "description": "Maps update anywhere in your inventory, not just in either hand!",
   "authors": [ "quaternary" ],
   "contact": {
-    "homepage": "TODO",
-    "sources": "TODO"
+    "homepage": "https://minecraft.curseforge.com/projects/crowmap",
+    "sources": "https://github.com/quat1024/Crowmap/tree/fabric",
+		"issues": "https://github.com/quat1024/Crowmap/issues"
   },
 
   "license": "MPL-2.0",
