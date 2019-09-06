@@ -12,7 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@Mod(modid = Crowmap.MODID, name = Crowmap.NAME, version = Crowmap.VERSION)
+@Mod(
+	modid = Crowmap.MODID,
+	name = Crowmap.NAME,
+	version = Crowmap.VERSION,
+	acceptableRemoteVersions = "*"
+)
 @Mod.EventBusSubscriber
 public class Crowmap {
 	public static final String MODID = "crowmap";
