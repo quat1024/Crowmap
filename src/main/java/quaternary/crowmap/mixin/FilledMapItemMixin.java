@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class FilledMapItemMixin {
 	@ModifyVariable(
 		at = @At("HEAD"),
-		method = "onEntityTick(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/Entity;IZ)V",
+		method = "inventoryTick",
 		argsOnly = true
 	)
 	public boolean onEntityTickPre(boolean isHeld) {
