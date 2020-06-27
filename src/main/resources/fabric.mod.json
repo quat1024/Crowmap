@@ -2,20 +2,24 @@
   "schemaVersion": 1,
   "id": "crowmap",
   "version": "${version}",
-
   "name": "Crowmap",
-  "description": "Maps update anywhere in your inventory, not just in either hand!",
-  "authors": [ "quaternary" ],
+  "description": "Maps update anywhere in your inventory.",
+  "authors": [
+    "quaternary"
+  ],
   "contact": {
-    "homepage": "https://minecraft.curseforge.com/projects/crowmap",
-    "sources": "https://github.com/quat1024/Crowmap/tree/fabric",
-		"issues": "https://github.com/quat1024/Crowmap/issues"
+    "homepage": "https://highlysuspect.agency",
+    "sources": "https://github.com/quat1024/crowmap"
   },
-
-  "license": "MPL-2.0",
+  "license": "LGPL-3.0-or-later",
   "icon": "assets/crowmap/icon.png",
-  
+  "environment": "*",
   "mixins": [
     "crowmap.mixins.json"
-  ]
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.2+build.194",
+    "fabric": "*",
+    "minecraft": ">=1.16-"
+  }
 }

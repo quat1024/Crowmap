@@ -1,4 +1,4 @@
-package quaternary.crowmap.mixin.client;
+package agency.highlysuspect.crowmap.mixin.client;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;

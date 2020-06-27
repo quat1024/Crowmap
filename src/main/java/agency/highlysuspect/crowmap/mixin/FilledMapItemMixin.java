@@ -1,4 +1,4 @@
-package quaternary.crowmap.mixin;
+package agency.highlysuspect.crowmap.mixin;
 
 import net.minecraft.item.FilledMapItem;
 import org.spongepowered.asm.mixin.Mixin;
