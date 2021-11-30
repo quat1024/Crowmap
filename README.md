@@ -1,7 +1,7 @@
 Crowmap (Fabric)
 ================
 
-Makes maps update when you hold them anywhere in your inventory, not just your hand. Now for ~~1.16~~ ~~1.17~~ 1.17.1!
+Makes maps update when you hold them anywhere in your inventory, not just your hand. Now for ~~1.16~~ ~~1.17~~ ~~1.17.1~~ 1.18.0!
 
 Pretty cool!
 
