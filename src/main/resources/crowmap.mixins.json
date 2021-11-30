@@ -1,12 +1,12 @@
 {
   "required": true,
   "package": "agency.highlysuspect.crowmap.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
     "FilledMapItemMixin"
   ],
   "client": [
-    "client.FilledMapItemTooltipMixin"
+		"client.FilledMapItemHoverTextMixin"
   ],
   "injectors": {
     "defaultRequire": 1

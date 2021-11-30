@@ -1,11 +1,11 @@
 package agency.highlysuspect.crowmap.mixin;
 
-import net.minecraft.item.FilledMapItem;
+import net.minecraft.world.item.MapItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(FilledMapItem.class)
+@Mixin(MapItem.class)
 public class FilledMapItemMixin {
 	@ModifyVariable(
 		at = @At("HEAD"),
