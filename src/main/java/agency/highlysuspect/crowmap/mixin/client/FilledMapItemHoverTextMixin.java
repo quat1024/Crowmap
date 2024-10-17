@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -49,11 +50,11 @@ public class FilledMapItemHoverTextMixin {
 	
 	@SuppressWarnings("UnnecessaryContinue")
 	@Inject(
-		method = "appendHoverText",
+		method = "appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V",
 		at = @At("TAIL")
 	)
-	public void appendHoverTextAfter(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced, CallbackInfo ci) {
-		if(level == null) return;
+	public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> tooltipComponents, TooltipFlag tooltipFlag, CallbackInfo ci) {
+		if(tooltipContext == null || tooltipContext == Item.TooltipContext.EMPTY) return;
 		
 		boolean shifting = Screen.hasShiftDown();
 		

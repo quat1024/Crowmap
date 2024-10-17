@@ -3,19 +3,19 @@ plugins {
 	id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 group = "agency.highlysuspect"
-archivesBaseName = "crowmap-1.20.4"
+archivesBaseName = "crowmap-1.20.6"
 version = "1.1.0"
 
 dependencies {
-	minecraft "com.mojang:minecraft:1.20.4"
+	minecraft "com.mojang:minecraft:1.20.6"
 	mappings loom.officialMojangMappings()
 	
 	modImplementation "net.fabricmc:fabric-loader:0.16.7"
-	modLocalRuntime fabricApi.module("fabric-resource-loader-v0", "0.97.2+1.20.4")
+	modLocalRuntime fabricApi.module("fabric-resource-loader-v0", "0.100.8+1.20.6")
 }
 
 processResources {
