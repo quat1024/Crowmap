@@ -1,6 +1,5 @@
 plugins {
-	id "fabric-loom" version "1.7.4"
-	id "maven-publish"
+	id "fabric-loom" version "1.10.4"
 }
 
 sourceCompatibility = JavaVersion.VERSION_21
@@ -14,8 +13,9 @@ dependencies {
 	minecraft "com.mojang:minecraft:1.21.1"
 	mappings loom.officialMojangMappings()
 	
-	modImplementation "net.fabricmc:fabric-loader:0.16.7"
-	modLocalRuntime fabricApi.module("fabric-resource-loader-v0", "0.106.0+1.21.1")
+	// https://fabricmc.net/develop/
+	modImplementation "net.fabricmc:fabric-loader:0.16.14"
+	modLocalRuntime fabricApi.module("fabric-resource-loader-v0", "0.116.0+1.21.1")
 }
 
 processResources {
