@@ -6,7 +6,7 @@
     "FilledMapItemMixin"
   ],
   "client": [
-		"client.FilledMapItemHoverTextMixin"
+		"client.ItemStackHoverTextMixin"
   ],
   "injectors": {
     "defaultRequire": 1

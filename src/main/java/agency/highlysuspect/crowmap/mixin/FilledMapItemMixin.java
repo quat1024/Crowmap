@@ -1,5 +1,6 @@
 package agency.highlysuspect.crowmap.mixin;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.MapItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,9 +13,11 @@ public class FilledMapItemMixin {
 		method = "inventoryTick",
 		argsOnly = true
 	)
-	public boolean onEntityTickPre(boolean isHeld) {
-		//this bool controls whether the map is held in the player's hand or not
-		//so... to make the map always update, time to always return true :P
-		return true;
+	public EquipmentSlot onEntityTickPre(EquipmentSlot slot) {
+		//some time between 1.21.1 and 1.21.5 inventoryTick was changed to
+		//pass a nullable InventorySlot corresponding to where the item is
+		//ok. so returning MAINHAND will make the map always think it's
+		//held in the main hand and therefore call the update function
+		return EquipmentSlot.MAINHAND;
 	}
 }

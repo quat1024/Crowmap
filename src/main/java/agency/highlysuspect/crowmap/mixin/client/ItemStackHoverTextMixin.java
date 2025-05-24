@@ -4,20 +4,20 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.MapItem;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
+import java.util.function.Consumer;
 
-@Mixin(MapItem.class)
-public class FilledMapItemHoverTextMixin {
+@Mixin(ItemStack.class)
+public class ItemStackHoverTextMixin {
 	
 	@Unique
 	int tooltipState = -1;
@@ -33,31 +33,38 @@ public class FilledMapItemHoverTextMixin {
 	@Unique private static final Component BYE =
 		Component.translatable("crowmap.tooltip.bye").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC);
 	
-	@Unique private void addHoldShiftPrompt(List<Component> tooltipComponents) {
-		tooltipComponents.add(HOLD_SHIFT);
+	@Unique private void addHoldShiftPrompt(Consumer<Component> tooltipComponents) {
+		tooltipComponents.accept(HOLD_SHIFT);
 	}
 	
-	@Unique private void addInfo(List<Component> tooltipComponents) {
-		tooltipComponents.add(INFO1);
-		tooltipComponents.add(INFO2);
+	@Unique private void addInfo(Consumer<Component> tooltipComponents) {
+		tooltipComponents.accept(INFO1);
+		tooltipComponents.accept(INFO2);
 	}
 	
-	@Unique private void addBye(List<Component> tooltipComponents) {
-		tooltipComponents.add(BYE);
+	@Unique private void addBye(Consumer<Component> tooltipComponents) {
+		tooltipComponents.accept(BYE);
 	}
 	
-	@SuppressWarnings("UnnecessaryContinue")
+	@Unique private boolean isMap() {
+		@SuppressWarnings("DataFlowIssue")
+		ItemStack THIS = (ItemStack) (Object) this;
+		return THIS.getItem() instanceof MapItem;
+	}
+	
+	@SuppressWarnings({"UnnecessaryContinue"})
 	@Inject(
-		method = "appendHoverText(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V",
+		method = "addDetailsToTooltip(Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/item/component/TooltipDisplay;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;Ljava/util/function/Consumer;)V",
 		at = @At("TAIL")
 	)
-	public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> tooltipComponents, TooltipFlag tooltipFlag, CallbackInfo ci) {
+	public void appendHoverText(Item.TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, @Nullable Player player, TooltipFlag tooltipFlag, Consumer<Component> tooltipComponents, CallbackInfo ci) {
+		if(!isMap()) return;
 		if(tooltipContext == null || tooltipContext == Item.TooltipContext.EMPTY) return;
 		
 		boolean shifting = Screen.hasShiftDown();
 		
 		//it's a state machine! "continue" transitions states.
-		//'i' instead of 'while(true) is just defensive against
+		//'i' instead of 'while(true)' is just defensive against
 		// my shit code causing infinite loops
 		
 		for(int i = 0; i <= 3; i++) {
