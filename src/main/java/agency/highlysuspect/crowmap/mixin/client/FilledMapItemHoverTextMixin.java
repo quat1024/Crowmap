@@ -57,6 +57,8 @@ public class FilledMapItemHoverTextMixin {
 		boolean shifting = Screen.hasShiftDown();
 		
 		//it's a state machine! "continue" transitions states.
+		//'i' instead of 'while(true) is just defensive against
+		// my shit code causing infinite loops
 		
 		for(int i = 0; i <= 3; i++) {
 			switch(tooltipState) {
